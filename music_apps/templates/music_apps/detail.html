@@ -1,4 +1,6 @@
+{% extends 'music_apps/base.html' %}
 
+{% block content %}
 <h1> 
 Details Page:
 </h1>
@@ -6,7 +8,10 @@ Details Page:
 <p>
 <ul>
 	{% for albums in album %}
-		<li>{{ albums }}</li>
+		<li><a href='{% url "music_apps:albums" albums.id %}'>{{ albums }}</a></li>
+	{% empty %}
+		<a href="#">Add new album</a>
 	{% endfor %}
 </ul>
 </p>
+{% endblock content %}

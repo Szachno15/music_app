@@ -1,5 +1,11 @@
 {% extends 'music_apps/base.html' %}
 
 {% block content %}
-<h2>Welcome!</h2>
+<h1>Album: {{ album }} </h1>
+
+
+{% for songs in song %}
+	{{songs}}
+
+{% endfor %}
 {% endblock content %}
