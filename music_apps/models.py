@@ -15,7 +15,7 @@ class Album(models.Model):
 class Song(models.Model):
 	album = models.ForeignKey(Album)
 	song = models.CharField(max_length=100)
-	song_url = models.CharField(max_length=150)
+	song_url = models.CharField(max_length=150, default='Link here')
 	
 	def __str__(self):
 		return self.song
