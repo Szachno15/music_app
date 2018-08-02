@@ -33,3 +33,18 @@ def add_album(request):
 			
 	context = {'form':form}
 	return render(request, 'music_apps/add_album.html', context)
+	
+def add_song(request, album_id):
+	album = Album.objects.get(pk=album_id) 
+	if request.method != 'POST':
+		form = SongForm()
+	else:
+		form = SongForm(data=request.POST)
+		if form.is_valid():
+			new_song = form.save(commit=False)
+			new_song.album = album
+			new_song.save()
+			return HttpResponseRedirect(reverse('music_apps:albums', args=[album_id]))
+		
+	context = {'album':album, 'form':form}
+	return render(request, 'music_apps/add_song.html', context)

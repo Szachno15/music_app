@@ -6,6 +6,7 @@
  		{% for songs in song %}
  			<li>{{ songs }}</li>
 		{% endfor %}
+		<a href="{% url 'music_apps:add_song' album.id %}">Add song</a>
 	</ul>
 
 {% endblock content %}

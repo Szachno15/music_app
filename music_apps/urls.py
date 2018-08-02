@@ -14,4 +14,6 @@ urlpatterns = [
     #New album
     url(r'^add_album/$', views.add_album, name='add_album'),
     
+    url(r'^add_song/(?P<album_id>\d+)/$', views.add_song, name='add_song'),
+    
 ]

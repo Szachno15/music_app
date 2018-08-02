@@ -10,5 +10,6 @@ class AlbumForm(forms.ModelForm):
 class SongForm(forms.ModelForm):
 	class Meta:	
 		model = Song
-		fields = ['song']
-		label = {'song':''}
+		fields = ['song', 'song_url']
+		label = {'text':''}
+		widget = {'text': forms.Textarea(attrs={'cols':80})}
