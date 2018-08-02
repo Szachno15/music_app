@@ -1,0 +1,10 @@
+{% extends 'music_apps/base.html' %}
+
+{% block content %}
+<p> Add a new Album </p>
+	<form action="{% url 'music_apps:add_album' %}" method='post'>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name='submit'>Submit</button>
+	</form>
+{% endblock content %}

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
+
+from .forms import AlbumForm, SongForm
 from .models import Album, Song
 
 def index(request):
@@ -17,3 +20,16 @@ def albums(request, album_id):
 	song = album.song_set.order_by()
 	context = {'album':album, 'song':song}
 	return render(request, 'music_apps/album_id.html', context)
+	
+def add_album(request):
+	#New song for a particular album
+	if request.method != 'POST':
+		form = AlbumForm() 
+	else:
+		form = AlbumForm(data=request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('music_apps:detail'))			
+			
+	context = {'form':form}
+	return render(request, 'music_apps/add_album.html', context)
