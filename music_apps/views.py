@@ -54,12 +54,12 @@ def edit_song(request, song_id):
 	song = Song.objects.get(pk=song_id)
 	album = song.album
 	if request.method != 'POST':
-		form = AlbumForm(instance=song)
+		form = SongForm(instance=song)
 	else:
-		form = AlbumForm(data=request.POST, instance=song)
+		form = SongForm(data=request.POST, instance=song)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect(reverse('music_apps:album_id', args=[album.id]))
+			return HttpResponseRedirect(reverse('music_apps:albums', args=[album.id]))
 			
 	context = {'form':form, 'album':album, 'song':song}
 	return render(request, 'music_apps/edit_song.html', context)
