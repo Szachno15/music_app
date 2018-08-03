@@ -5,15 +5,16 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     
-    #shows all albums
+    #Shows all albums
     url(r'^detail/$', views.detail, name='detail'),
     
-    #individual pages for Album
+    #Individual pages for Album
     url(r'^detail/(?P<album_id>\d+)/$', views.albums, name='albums'),
     
-    #New album
     url(r'^add_album/$', views.add_album, name='add_album'),
     
     url(r'^add_song/(?P<album_id>\d+)/$', views.add_song, name='add_song'),
+    
+    url(r'^edit_song/(?P<song_id>\d+)/$', views.edit_song, name='edit_song'),
     
 ]

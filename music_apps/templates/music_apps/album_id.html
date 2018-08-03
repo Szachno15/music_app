@@ -4,9 +4,13 @@
 	<h1>Album: {{ album }} </h1>
 	<ul>
  		{% for songs in song %}
- 			<li>{{ songs }}</li>
+ 			<li>{{ songs }}
+ 			<br>
+  			<a href="{% url 'music_apps:edit_song' songs.id %}">-Edit</a></li>
 		{% endfor %}
-		<a href="{% url 'music_apps:add_song' album.id %}">Add song</a>
+		<br>
+		<a href="{% url 'music_apps:add_song' album.id %}">Add song</a> 
+		
 	</ul>
 
 {% endblock content %}

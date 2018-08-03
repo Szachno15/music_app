@@ -1,0 +1,6 @@
+
+<form action='{% url "music_apps:album_edit" %}' method='POST'></a>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">Submit</button>
+</form>
