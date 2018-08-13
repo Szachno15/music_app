@@ -36,7 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #My apps
     'music_apps',
+    'user_app',
+    #Third party
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +123,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = 'user_app/login/'
+BOOTSTRAP3 = {	
+	'include_jquery':True,
+	}
+	# Heroku settings
+	cwd = os.getcwd()
+	if cwd == '/app' or cwd[:4] == '/tmp':
+		import dj_database_url
+		DATABASES = {
+			'default': dj_database_url.config(default='postgres://localhost')
+		}
+
+	#Honor the 'X-Forwarded-Proto' header for request.is_secure().
+	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+	
+	# Allow all host headers
+	ALLOWED_HOST = ['*']
+	
+	#Static asset configuration
+	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+	STATICFILES_DIRS = (
+		os.path.join(BASE_DIR, 'static'),
+	)

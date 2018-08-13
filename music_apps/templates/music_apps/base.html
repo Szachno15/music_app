@@ -1,5 +1,61 @@
-<a href="{% url 'music_apps:index' %}">Home</a> -
-<a href="{% url 'music_apps:detail' %}">All Albums</a>
+{% load bootstrap3 %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MUSIC APP</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
 
-{% block content %} {% endblock content %}
+<body>
+	<!-- Nav bar - Home header -->
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type='button' class='navbar-toggle collapse'
+					data-toggle='collapse' data-target='#nav'
+					aria-expanded='false' aria-controls='navbar'>
+				</button>
+				<a class='navbar-brand' href="{% url 'music_apps:index' %}">Home</a>
+			</div>
+			
+	<!-- Nav bar - Details -->
+			<div id='nav' class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'music_apps:detail' %}">Details</a></li>
+					{% else %}
+						<h1></h1>
+					{% endif %}
+				</ul>
+	<!-- Nav bar - UserLogin -->
+				<ul class='nav navbar-nav navbar-right'>
+					{% if user.is_authenticated %}
+						<li><a>Hello, {{ user.username }}.</a></li>
+						<li><a href="{% url 'user_app:logout' %}">Log out</a></li>
+					{% else %}
+						<li><a href="{% url 'user_app:login' %}">Log in</a></li>
+						<li><a href="{% url 'user_app:register' %}">Register</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav><!-- /.nav-collapse -->
+	
+	<div class='container'>
+	<div class="page-header">
+		{% block header %} {% endblock header %}
+			</div>
+			<div>
+		{% block content %} {% endblock content %}
+			</div>
+			</div>
+</body>
+</html>
+

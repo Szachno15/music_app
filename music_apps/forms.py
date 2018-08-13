@@ -4,7 +4,7 @@ from django import forms
 class AlbumForm(forms.ModelForm):
 	class Meta:
 		model = Album
-		fields = ['artist', 'album']
+		fields = ['artist', 'album', 'album_dp']
 		label = {'text':''}
 		
 class SongForm(forms.ModelForm):

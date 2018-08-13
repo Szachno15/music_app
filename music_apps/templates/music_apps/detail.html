@@ -8,11 +8,9 @@ Details Page:
 <p>
 <ul>
 	{% for albums in album %}
-		<li><a href='{% url "music_apps:albums" albums.id %}'>{{ albums }}</a></li>
-		
+		<li><a href='{% url "music_apps:albums" albums.id %}'>{{ albums }}</a></li>	
 	{% endfor %}
 </ul>
 	<a href="{% url 'music_apps:add_album' %}">Add album</a>
-	
 </p>
 {% endblock content %}

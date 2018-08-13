@@ -1,5 +1,25 @@
+
+
 {% extends 'music_apps/base.html' %}
 
+{% block header %}
+	<div class='jumbotron' >
+		<h2>'Ello Gov'nor</h2>
+	</div>
+{% endblock header %}
+
 {% block content %}
-<h2>Welcome!</h2>
+	{% if user.is_authenticated %}
+		<h2>
+			<a href="{% url 'music_apps:add_album' %}">Add album</a>
+		</h2>
+	{% else %}
+		<h2>
+			<a href="{% url 'user_app:register' %}">Register, in order to make your own
+			music library.</a>
+		</h2>
+	
+	{% endif %}
+	
+
 {% endblock content %}

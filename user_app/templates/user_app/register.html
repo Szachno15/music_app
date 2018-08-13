@@ -1,0 +1,22 @@
+{% extends 'music_apps/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+ 
+	<div class='jumbotron'> 
+	<h2>Register </h2>
+	</div>
+ 
+{% endblock header %}
+
+{% block content %}
+	<form method='post' action='{% url "user_app:register" %} class='form'>
+		{% csrf_token %}
+		{% bootstrap_form form %}
+	
+		{% buttons %}
+			<button name="register" class="btn btn-primary">Register</buttons>
+		{% endbuttons %}
+			<input type='hidden' name='next' value='{% url "music_apps:index" %}'/>
+	</form>
+{% endblock content %}
