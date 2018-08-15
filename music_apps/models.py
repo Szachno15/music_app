@@ -8,14 +8,14 @@ class Album(models.Model):
 	album_dp = models.TextField()
 	artist = models.CharField(max_length=100)
 	logo = models.FileField(max_length=100)
-	owner = models.ForeignKey(User)
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)
     
 	def __str__(self):
 		return self.album 
 		
 
 class Song(models.Model):
-	album = models.ForeignKey(Album)
+	album = models.ForeignKey(Album, on_delete=models.CASCADE)
 	song = models.CharField(max_length=100)
 	song_url = models.CharField(max_length=150, default='Paste URL here')
 	
